@@ -1,0 +1,22 @@
+web:
+    build: .
+    ports:
+        - "80:80"
+    volumes:
+        - .:/var/www/html
+    links:
+        - mysql
+        - memcached
+mysql:
+    image: mysql
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=reservae_dev
+        - MYSQL_USER=reservae_dev
+        - MYSQL_PASSWORD=123
+memcached:
+    image: memcached
+    ports:
+        - "11211:11211"
